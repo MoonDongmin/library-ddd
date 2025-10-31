@@ -44,16 +44,16 @@
 ### 핵심 원칙 3가지
 
 1. **비즈니스 로직은 도메인에**
-   - ❌ 나쁜 예: `PatronService`에서 "일반 회원은 5권까지만" 체크
-   - ✅ 좋은 예: `Patron` 도메인 객체 자체가 규칙을 검증
+    - ❌ 나쁜 예: `PatronService`에서 "일반 회원은 5권까지만" 체크
+    - ✅ 좋은 예: `Patron` 도메인 객체 자체가 규칙을 검증
 
 2. **의존성은 안쪽으로**
-   - ❌ Domain이 Infrastructure를 import
-   - ✅ Infrastructure가 Domain의 인터페이스(Port)를 구현
+    - ❌ Domain이 Infrastructure를 import
+    - ✅ Infrastructure가 Domain의 인터페이스(Port)를 구현
 
 3. **도메인은 프레임워크와 독립적**
-   - ❌ Domain에 `@Entity`, `@Injectable` 같은 데코레이터
-   - ✅ 순수 TypeScript 클래스만 사용
+    - ❌ Domain에 `@Entity`, `@Injectable` 같은 데코레이터
+    - ✅ 순수 TypeScript 클래스만 사용
 
 ---
 
@@ -166,9 +166,9 @@ PlaceOnHold   →   BookPlacedOnHold
 ```sql
 -- patrons 테이블
 CREATE TABLE patrons (
-  id VARCHAR(255) PRIMARY KEY,
-  patron_type VARCHAR(50),  -- 'REGULAR' | 'RESEARCHER'
-  holds JSONB               -- 현재 예약 목록
+                         id VARCHAR(255) PRIMARY KEY,
+                         patron_type VARCHAR(50),  -- 'REGULAR' | 'RESEARCHER'
+                         holds JSONB               -- 현재 예약 목록
 );
 ```
 
@@ -822,9 +822,9 @@ export class PlaceOnHoldHandler implements ICommandHandler<PlaceOnHoldCommand> {
     // 3. 도메인 로직 실행
     const duration = command.numberOfDays
       ? HoldDuration.closeEnded(
-          DateVO.now(),
-          DateVO.now().addDays(command.numberOfDays)
-        )
+        DateVO.now(),
+        DateVO.now().addDays(command.numberOfDays)
+      )
       : HoldDuration.openEnded(DateVO.now());
 
     const result = patron.placeOnHold(book, duration);
