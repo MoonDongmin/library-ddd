@@ -6,9 +6,9 @@ import { BookOnHold } from "./book-on-hold";
 
 export class AvailableBook implements Book {
   constructor(
-    private readonly bookId: BookId,
-    private readonly libraryBranchId: LibraryBranchId,
-    private readonly version: Version,
+    public readonly bookId: BookId,
+    public readonly libraryBranchId: LibraryBranchId,
+    public readonly version: Version,
   ) {}
 
   handleBookPlacedOnHold(bookPlacedOnHold: BookPlacedOnHold): BookOnHold {
