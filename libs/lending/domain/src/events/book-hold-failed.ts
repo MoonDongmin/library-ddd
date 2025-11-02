@@ -1,5 +1,5 @@
 import { PatronId } from "@library/lending/domain";
-import { Rejection } from "../policies/placing-on-hold-policy";
+import { Rejection } from "../lib/policies/placing-on-hold-policy";
 import { PatronEvent } from "./patron-event";
 
 export class BookHoldFailed implements PatronEvent {
